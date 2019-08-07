@@ -1,6 +1,6 @@
 package com.moviereviewskotlin.di.modules
 
-import com.moviereviewskotlin.MainActivity
+import com.moviereviewskotlin.ui.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
