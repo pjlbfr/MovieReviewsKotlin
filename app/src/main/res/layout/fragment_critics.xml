@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipe_refresh_critics"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/swipeRefreshCritics"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#6621425d"
-            >
+            android:background="#6621425d">
 
-            <EditText
-                android:id="@+id/text_search_critic"
+        <EditText
+                android:id="@+id/etSearchCritic"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background"
@@ -24,15 +23,14 @@
                 android:padding="10dp"
                 android:inputType="textPersonName"
                 android:hint="@string/hint_enter_critic_name"
-                android:drawableLeft="@drawable/ic_search_black_24dp"
                 android:drawableStart="@drawable/ic_search_black_24dp"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_critics"
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCritics"
                 android:scrollbars="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-        </LinearLayout>
+    </LinearLayout>
 
-</android.support.v4.widget.SwipeRefreshLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

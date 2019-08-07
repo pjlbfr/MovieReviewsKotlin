@@ -3,7 +3,6 @@ package com.moviereviewskotlin.base
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.google.android.material.snackbar.Snackbar
@@ -18,9 +17,9 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
 
     protected abstract fun getLayoutResource(): Int
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
-        super.onCreate(savedInstanceState, persistentState)
+        super.onCreate(savedInstanceState)
         setContentView(getLayoutResource())
     }
 

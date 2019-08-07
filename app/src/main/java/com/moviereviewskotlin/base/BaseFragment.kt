@@ -11,8 +11,6 @@ import dagger.android.support.DaggerFragment
 
 abstract class BaseFragment : DaggerFragment() {
 
-    protected val TAG = BaseFragment::class.simpleName
-
     protected abstract fun getFragmentLayout(): Int
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

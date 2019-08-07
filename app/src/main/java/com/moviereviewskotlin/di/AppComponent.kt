@@ -1,10 +1,7 @@
 package com.moviereviewskotlin.di
 
 import com.moviereviewskotlin.MovieApp
-import com.moviereviewskotlin.di.modules.ActivityModule
-import com.moviereviewskotlin.di.modules.AppModule
-import com.moviereviewskotlin.di.modules.ViewModelFactoryModule
-import com.moviereviewskotlin.di.modules.ViewModelModule
+import com.moviereviewskotlin.di.modules.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -15,6 +12,7 @@ import javax.inject.Singleton
     AppModule::class,
     AndroidInjectionModule::class,
     ActivityModule::class,
+    FragmentModule::class,
     ViewModelModule::class,
     ViewModelFactoryModule::class
     ))
