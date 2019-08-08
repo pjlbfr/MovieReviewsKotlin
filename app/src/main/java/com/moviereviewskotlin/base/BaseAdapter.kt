@@ -21,11 +21,11 @@ abstract class BaseAdapter<T, VH: RecyclerView.ViewHolder>(items: MutableList<T>
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        holder.itemView.setOnClickListener { view -> onItemClickListener?.onItemClick(holder.adapterPosition) }
+        holder.itemView.setOnClickListener { onItemClickListener.onItemClick(holder.adapterPosition) }
     }
 
     override fun getItemCount(): Int {
-        return if (items != null) items.size else 0
+        return items.size
     }
 
     fun getItem(position: Int): T {

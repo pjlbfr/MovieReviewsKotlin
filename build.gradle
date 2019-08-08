@@ -5,7 +5,7 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
@@ -19,6 +19,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
         
     }
 }
@@ -43,7 +44,12 @@ ext{
     lifecycleVersion = '2.0.0'
     materialVersion = '1.0.0'
     multidexVersion = '2.0.1'
+    okhttpVersion = '3.12.1'
     permissionDispatcherVersion = '3.1.0'
-    roomVersion = '1.1.1'
     recyclerviewVersion = '1.0.0'
+    retrofitAdapterVersion = '2.5.0'
+    retrofitVersion = "2.3.0"
+    roomVersion = '1.1.1'
+    rxandroidVersion = '2.1.0'
+    rxjavaVersion = '2.2.6'
 }

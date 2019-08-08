@@ -9,13 +9,14 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = arrayOf(
-    AppModule::class,
-    AndroidInjectionModule::class,
-    ActivityModule::class,
-    FragmentModule::class,
-    ViewModelModule::class,
-    ViewModelFactoryModule::class
-    ))
+                AppModule::class,
+                AndroidInjectionModule::class,
+                ActivityModule::class,
+                FragmentModule::class,
+                NetworkModule::class,
+                ViewModelModule::class,
+                ViewModelFactoryModule::class
+          ))
 interface AppComponent {
 
     @Component.Builder

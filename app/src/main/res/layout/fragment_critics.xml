@@ -11,6 +11,11 @@
             android:orientation="vertical"
             android:background="#6621425d">
 
+        <!--<ImageView-->
+                <!--android:id="@+id/image"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"/>-->
+
         <EditText
                 android:id="@+id/etSearchCritic"
                 android:layout_width="match_parent"
