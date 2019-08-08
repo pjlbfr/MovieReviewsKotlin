@@ -2,6 +2,7 @@ package com.moviereviewskotlin.di.modules
 
 import androidx.lifecycle.ViewModel
 import com.moviereviewskotlin.di.ViewModelKey
+import com.moviereviewskotlin.ui.critic.CriticViewModel
 import com.moviereviewskotlin.ui.critics.CriticsViewModel
 import com.moviereviewskotlin.ui.reviews.ReviewsViewModel
 import dagger.Binds
@@ -21,4 +22,8 @@ abstract class ViewModelModule {
     @ViewModelKey(ReviewsViewModel::class)
     abstract fun bindReviewsViewModel(viewModel: ReviewsViewModel): ViewModel
 
+    @Binds
+    @IntoMap
+    @ViewModelKey(CriticViewModel::class)
+    abstract fun bindCriticViewModel(viewModel: CriticViewModel): ViewModel
 }

@@ -2,7 +2,7 @@ package com.moviereviewskotlin.base
 
 import com.moviereviewskotlin.R
 
-class BaseRouter {
+open class BaseRouter {
 
-    protected val containerId = R.id.container
+    protected val containerId = R.id.containerId
 }

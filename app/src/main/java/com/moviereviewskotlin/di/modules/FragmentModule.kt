@@ -1,5 +1,6 @@
 package com.moviereviewskotlin.di.modules
 
+import com.moviereviewskotlin.ui.critic.CriticFragment
 import com.moviereviewskotlin.ui.critics.CriticsFragment
 import com.moviereviewskotlin.ui.reviews.ReviewsFragment
 
@@ -14,4 +15,7 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     abstract fun bindReviewsFragment(): ReviewsFragment
+
+    @ContributesAndroidInjector
+    abstract fun bindCriticFragment(): CriticFragment
 }
