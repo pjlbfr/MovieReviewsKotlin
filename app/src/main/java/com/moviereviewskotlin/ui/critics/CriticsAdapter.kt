@@ -1,6 +1,5 @@
 package com.moviereviewskotlin.ui.critics
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,12 +14,9 @@ import kotlinx.android.synthetic.main.item_critic.view.*
 class CriticsAdapter(items: MutableList<Critic>, listener: OnItemClickListener) :
                             BaseAdapter<Critic, CriticsAdapter.CriticsViewHolder>(items, listener) {
 
-    lateinit var context: Context
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CriticsViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_critic, parent, false)
-        context = parent.context
         return CriticsViewHolder(view)
     }
 
@@ -31,13 +27,11 @@ class CriticsAdapter(items: MutableList<Critic>, listener: OnItemClickListener) 
 
         val src = getItem(position).multimedia?.resource?.src
 
-        GlideApp.with(context)
+        GlideApp.with(holder.itemView.context)
              .load(src)
-//             .apply(RequestOptions().placeholder(R.drawable.critic_default).centerCrop())
+             .apply(RequestOptions().placeholder(R.drawable.critic_default).centerCrop())
              .into(holder.itemView.imageCritic)
-
     }
-
 
     class CriticsViewHolder(itemView: View) : BaseViewHolder(itemView)
 }

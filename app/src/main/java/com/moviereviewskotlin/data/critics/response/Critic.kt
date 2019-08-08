@@ -1,5 +1,9 @@
 package com.moviereviewskotlin.data.critics.response
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Critic(
   //  val id: String,
     val display_name: String,
@@ -7,5 +11,5 @@ data class Critic(
     val status: String,
     val bio: String,
     val seo_name: String,
-    val multimedia: MultimediaCritic
-)
+    val multimedia: MultimediaCritic?
+) : Parcelable

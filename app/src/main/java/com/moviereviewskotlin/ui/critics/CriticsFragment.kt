@@ -1,5 +1,6 @@
 package com.moviereviewskotlin.ui.critics
 
+import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -18,6 +19,9 @@ import javax.inject.Inject
 class CriticsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, BaseAdapter.OnItemClickListener {
 
     @Inject
+    lateinit var router: CriticsRouter
+
+    @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var viewModel: CriticsViewModel
@@ -34,16 +38,16 @@ class CriticsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Ba
         initRecyclerView()
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CriticsViewModel::class.java)
-
         viewModel.getCritics().observe(this, criticsObserver())
 
+        swipeRefreshCritics.isRefreshing = true
         viewModel.criticsRequest()
     }
 
     override fun onRefresh() {
         etSearchCritic.setText("")
-        if (swipeRefreshCritics.isRefreshing)
-            swipeRefreshCritics.isRefreshing = false
+        swipeRefreshCritics.isRefreshing = true
+        viewModel.criticsRequest()
     }
 
     private fun initRecyclerView(){
@@ -55,11 +59,13 @@ class CriticsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Ba
         return Observer { result ->
             Log.e("goodday", result.toString())
             adapter.setAllItems(result.results)
+            if (swipeRefreshCritics.isRefreshing)
+                swipeRefreshCritics.isRefreshing = false
         }
     }
 
     override fun onItemClick(position: Int) {
         Log.e("goodday", "position = $position")
+        router.goToCriticView(activity as Activity, adapter.getItem(position))
     }
-
 }
