@@ -1,12 +1,11 @@
 package com.moviereviewskotlin.ui.critic
 
 import android.content.Context
-import android.view.MotionEvent
-import android.view.GestureDetector.SimpleOnGestureListener
 import android.view.GestureDetector
+import android.view.GestureDetector.SimpleOnGestureListener
+import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
-
 
 
 open class OnSwipeTouchListener(ctx: Context?) : OnTouchListener {
@@ -17,10 +16,7 @@ open class OnSwipeTouchListener(ctx: Context?) : OnTouchListener {
         gestureDetector = GestureDetector(ctx, GestureListener())
     }
 
-    override fun onTouch(v: View, event: MotionEvent): Boolean {
-
-        return gestureDetector.onTouchEvent(event)
-    }
+    override fun onTouch(v: View, event: MotionEvent): Boolean = gestureDetector.onTouchEvent(event)
 
     private inner class GestureListener : SimpleOnGestureListener() {
 
@@ -44,7 +40,6 @@ open class OnSwipeTouchListener(ctx: Context?) : OnTouchListener {
                             onSwipeLeft()
                         }
                     }
-                    result = true
                 } else if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
                     if (diffY > 0) {
                         onSwipeBottom()

@@ -5,5 +5,5 @@ data class Reviews(
     val copyright: String,
     val has_more: Boolean,
     val num_results: Int,
-    val results: List<Review>
+    val results: MutableList<Review>
 )

@@ -45,7 +45,9 @@ ext{
     materialVersion = '1.0.0'
     multidexVersion = '2.0.1'
     okhttpVersion = '3.12.1'
+    paginateVersion = '0.5.1'
     permissionDispatcherVersion = '3.1.0'
+    progressBarVersion = '1.6.1'
     recyclerviewVersion = '1.0.0'
     retrofitAdapterVersion = '2.5.0'
     retrofitVersion = "2.3.0"

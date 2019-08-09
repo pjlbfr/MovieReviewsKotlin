@@ -32,7 +32,7 @@ class CriticActivity : BaseActivity() {
         router.goToCriticFragment(supportFragmentManager, critic)
     }
 
-    private fun initActionBar(name: String){
+    private fun initActionBar(name: String) {
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.actionbar_title)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.colorCritics)))
@@ -42,7 +42,7 @@ class CriticActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
+        when (item.itemId) {
             android.R.id.home -> super.onBackPressed()
         }
         return super.onOptionsItemSelected(item)

@@ -2,7 +2,7 @@ package com.moviereviewskotlin.base
 
 import androidx.recyclerview.widget.RecyclerView
 
-abstract class BaseAdapter<T, VH: RecyclerView.ViewHolder>(items: MutableList<T>) : RecyclerView.Adapter<VH>() {
+abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder>(items: MutableList<T>) : RecyclerView.Adapter<VH>() {
 
     private var items: MutableList<T>
 
@@ -16,7 +16,7 @@ abstract class BaseAdapter<T, VH: RecyclerView.ViewHolder>(items: MutableList<T>
 
     private lateinit var onItemClickListener: OnItemClickListener
 
-    constructor(items: MutableList<T>, onItemClickListener: OnItemClickListener): this(items) {
+    constructor(items: MutableList<T>, onItemClickListener: OnItemClickListener) : this(items) {
         this.onItemClickListener = onItemClickListener
     }
 
@@ -24,20 +24,19 @@ abstract class BaseAdapter<T, VH: RecyclerView.ViewHolder>(items: MutableList<T>
         holder.itemView.setOnClickListener { onItemClickListener.onItemClick(holder.adapterPosition) }
     }
 
-    override fun getItemCount(): Int {
-        return items.size
-    }
+    override fun getItemCount(): Int = items.size
 
-    fun getItem(position: Int): T {
-        return this.items[position]
-    }
+    fun getItem(position: Int): T = this.items[position]
 
-    fun getAllItems(): MutableList<T>{
-        return items
-    }
+    fun getAllItems(): MutableList<T> = items
 
     fun setAllItems(_items: MutableList<T>) {
         this.items = _items
+        notifyDataSetChanged()
+    }
+
+    fun setAllToItems(_items: MutableList<T>) {
+        this.items.addAll(_items)
         notifyDataSetChanged()
     }
 
@@ -46,9 +45,8 @@ abstract class BaseAdapter<T, VH: RecyclerView.ViewHolder>(items: MutableList<T>
         notifyDataSetChanged()
     }
 
-    fun clearItems(){
+    fun clearItems() {
         this.items.clear()
         notifyDataSetChanged()
     }
-
 }

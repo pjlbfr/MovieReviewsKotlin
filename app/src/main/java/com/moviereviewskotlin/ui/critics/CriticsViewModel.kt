@@ -16,19 +16,19 @@ class CriticsViewModel @Inject constructor(criticsUseCase: CriticsUseCase) : Bas
 
     fun getCritics() = critics
 
-    fun criticsRequest(){
-            compositeDisposable.add(criticsUseCase
-                .run("all")
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    {result -> handleCritics(result)},
-                    {error -> handleError(error)}
-                )
+    fun criticsRequest() {
+        compositeDisposable.add(criticsUseCase
+            .run("all")
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { result -> handleCritics(result) },
+                { error -> handleError(error) }
             )
+        )
     }
 
-    private fun handleCritics(s: Critics?) {
-        critics.value = s
+    private fun handleCritics(result: Critics?) {
+        critics.value = result
     }
 }
