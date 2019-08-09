@@ -1,8 +1,8 @@
 package com.moviereviewskotlin.data.reviews.response
 
 data class MultimediaReview(
-    val type: String,
-    val src: String,
+    val width: Int,
     val height: Int,
-    val width: Int
+    val src: String,
+    val type: String
 )

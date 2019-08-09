@@ -10,7 +10,7 @@ import retrofit2.http.Query
 interface Api {
 
     @GET("reviews/search.json?api-key=Gj5bNb9TOHnGuCGAWTiG1MPlcOUUc6WG")
-    fun getReviewsObservable(@Query("offset") offset: Int, @Query("query") title: String, @Query("publication-date") publication_date: String): Observable<Reviews>
+    fun getReviews(@Query("offset") offset: Int, @Query("query") title: String, @Query("publication-date") publication_date: String): Observable<Reviews>
 
     @GET("critics/{name}.json?api-key=Gj5bNb9TOHnGuCGAWTiG1MPlcOUUc6WG")
     fun getCritics(@Path("name") name: String): Observable<Critics>

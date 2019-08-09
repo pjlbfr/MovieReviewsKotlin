@@ -100,7 +100,6 @@ class CriticFragment :
             loading = false
             hasMoreReviews = result.has_more
             adapter.setAllToItems(result.results)
-            Log.e("goodday", result.toString())
         }
     }
 

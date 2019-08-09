@@ -1,8 +1,11 @@
 package com.moviereviewskotlin.ui.main
 
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.os.Bundle
+import android.view.WindowManager
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 
 import androidx.appcompat.app.ActionBar
 import androidx.core.content.ContextCompat
@@ -38,6 +41,7 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener {
         supportActionBar?.setCustomView(R.layout.actionbar_title)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.colorReviews)))
         supportActionBar?.elevation = 0F
+        setStatusBarColor(R.color.colorReviews)
     }
 
     override fun onBackPressed() {
@@ -70,16 +74,20 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener {
         when(position) {
             0 -> {
                 setActionBarView(R.string.reviews, R.color.colorReviews)
+                setStatusBarColor(R.color.colorReviews)
 
                 setTextView(tvCritics, R.color.colorWhite, R.drawable.tab_background_critics_unselected)
                 setTextView(tvReviews, R.color.colorReviews, R.drawable.tab_background_reviews_selected)
             }
             else -> {
                 setActionBarView(R.string.critics, R.color.colorCritics)
+                setStatusBarColor(R.color.colorCritics)
 
                 setTextView(tvReviews, R.color.colorWhite, R.drawable.tab_background_reviews_unselected)
                 setTextView(tvCritics, R.color.colorCritics, R.drawable.tab_background_critics_selected)
             }
         }
     }
+
+
 }

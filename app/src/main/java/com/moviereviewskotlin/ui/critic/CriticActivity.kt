@@ -38,6 +38,7 @@ class CriticActivity : BaseActivity() {
         supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.colorCritics)))
         supportActionBar?.elevation = 0F
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setStatusBarColor(R.color.colorCritics)
         tvTitle.text = name
     }
 

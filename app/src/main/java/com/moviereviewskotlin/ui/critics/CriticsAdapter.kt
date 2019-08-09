@@ -23,14 +23,15 @@ class CriticsAdapter(items: MutableList<Critic>, listener: OnItemClickListener) 
     override fun onBindViewHolder(holder: CriticsViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
 
-        holder.itemView.tvCriticName.text = getItem(position).display_name
+        val view = holder.itemView
+        val item = getItem(position)
 
-        val src = getItem(position).multimedia?.resource?.src
-
-        GlideApp.with(holder.itemView.context)
-             .load(src)
+        view.tvCriticName.text = item.display_name
+        
+        GlideApp.with(view.context)
+             .load(item.multimedia?.resource?.src)
              .apply(RequestOptions().placeholder(R.drawable.critic_default).centerCrop())
-             .into(holder.itemView.imageCritic)
+             .into(view.imageCritic)
     }
 
     class CriticsViewHolder(itemView: View) : BaseViewHolder(itemView)

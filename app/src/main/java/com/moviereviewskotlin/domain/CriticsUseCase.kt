@@ -7,8 +7,7 @@ import javax.inject.Inject
 
 class CriticsUseCase @Inject constructor(repository: CriticsRepository) : UseCase<String, Observable<Critics>>() {
 
-    private val dataSource = checkNotNull(repository)
+    private val dataSource = repository
 
     override fun executeUseCase(requestValues: String): Observable<Critics> = dataSource.getCritics(requestValues)
-
 }

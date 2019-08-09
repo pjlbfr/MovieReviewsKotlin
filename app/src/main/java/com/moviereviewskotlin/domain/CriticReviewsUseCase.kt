@@ -9,7 +9,7 @@ import javax.inject.Inject
 class CriticReviewsUseCase @Inject constructor(repository: CriticsRepository) :
     UseCase<CriticReviewsParams, Observable<Reviews>>() {
 
-    private val dataSource = checkNotNull(repository)
+    private val dataSource = repository
 
     override fun executeUseCase(requestValues: CriticReviewsParams): Observable<Reviews> =
         dataSource.getReviews(requestValues)

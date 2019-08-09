@@ -2,7 +2,7 @@
     <string name="app_name">MovieReviews</string>
     <string name="critics">Critics</string>
     <string name="reviews">Reviewes</string>
-    <string name="date">2018 / 11 / 13</string>
+    <string name="date">1970 / 01 / 01</string>
     <string name="dateFormat">%1$d / %2$02d / %3$02d</string>
     <string name="error_message">No internet access, check connection!</string>
     <string name="hint_enter_review_title">Enter the review title</string>

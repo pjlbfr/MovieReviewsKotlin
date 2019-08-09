@@ -1,4 +1,4 @@
-package com.moviereviewskotlin.ui.critic
+package com.moviereviewskotlin.ui.reviews
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,15 +11,15 @@ import com.moviereviewskotlin.base.BaseViewHolder
 import com.moviereviewskotlin.data.reviews.response.Review
 import kotlinx.android.synthetic.main.item_review.view.*
 
-class CriticReviewsAdapter(items: MutableList<Review>, listener: OnItemClickListener) :
-    BaseAdapter<Review, CriticReviewsAdapter.CriticReviewsViewHolder>(items, listener) {
+class ReviewsAdapter(items: MutableList<Review>, listener: OnItemClickListener) :
+                            BaseAdapter<Review, ReviewsAdapter.ReviewsViewHolder>(items, listener) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CriticReviewsViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_review, parent, false)
-        return CriticReviewsViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReviewsViewHolder {
+        val view = LayoutInflater.from(parent.context). inflate(R.layout.item_review, parent, false)
+        return ReviewsViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: CriticReviewsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ReviewsViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
 
         val view = holder.itemView
@@ -36,5 +36,5 @@ class CriticReviewsAdapter(items: MutableList<Review>, listener: OnItemClickList
             .into(view.imageReview)
     }
 
-    class CriticReviewsViewHolder(itemView: View) : BaseViewHolder(itemView)
+    class ReviewsViewHolder(itemView: View) : BaseViewHolder(itemView)
 }

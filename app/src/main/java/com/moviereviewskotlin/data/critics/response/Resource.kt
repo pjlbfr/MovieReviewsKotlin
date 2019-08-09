@@ -5,9 +5,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Resource(
-    val type: String,
-    val src: String,
-    val height: Int,
     val width: Int,
+    val height: Int,
+    val src: String,
+    val type: String,
     val credit: String
 ) :Parcelable
