@@ -40,8 +40,8 @@
 
                         <ImageView
                                 android:id="@+id/imageCritic"
-                                android:layout_width="150dp"
-                                android:layout_height="150dp"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
                                 android:scaleType="centerCrop"/>
 
                     </androidx.cardview.widget.CardView>
@@ -66,7 +66,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:layout_marginBottom="10dp"
-                                android:layout_weight="0.8"
+                                android:layout_weight="0.6"
                                 android:background="@drawable/tv_background_status"
                                 android:paddingLeft="20dp"
                                 android:paddingRight="20dp"
