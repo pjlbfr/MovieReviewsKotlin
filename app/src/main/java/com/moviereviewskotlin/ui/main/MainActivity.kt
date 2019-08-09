@@ -40,6 +40,13 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener {
         supportActionBar?.elevation = 0F
     }
 
+    override fun onBackPressed() {
+        if (viewPager.currentItem != 0)
+            viewPager.currentItem = 0
+        else
+            super.onBackPressed()
+    }
+
     // ViewPager Listeners
     override fun onPageScrollStateChanged(state: Int) {
     }
