@@ -1,8 +1,10 @@
 package com.moviereviewskotlin.ui.reviews
 
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.DatePicker
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -16,9 +18,12 @@ import com.moviereviewskotlin.data.reviews.response.Reviews
 import com.moviereviewskotlin.ui.critic.LoadingItemCreator
 import com.paginate.Paginate
 import kotlinx.android.synthetic.main.fragment_reviews.*
+import java.time.Month
+import java.time.Year
+import java.util.*
 import javax.inject.Inject
 
-class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, BaseAdapter.OnItemClickListener, Paginate.Callbacks {
+class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, BaseAdapter.OnItemClickListener, Paginate.Callbacks, View.OnClickListener {
 
     @Inject
     lateinit var viewmodelFactory: ViewModelProvider.Factory
@@ -30,6 +35,8 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Ba
     private var hasMoreReviews = true
     private var loading = false
 
+    val calendar = Calendar.getInstance()
+
     override fun getFragmentLayout(): Int = R.layout.fragment_reviews
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,6 +47,8 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Ba
         viewModel = ViewModelProviders.of(this, viewmodelFactory).get(ReviewsViewModel::class.java)
         viewModel.getReviews().observe(this, reviewsObserver())
 
+        tvDate.text = getString(R.string.dateFormat, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH))
+        tvDate.setOnClickListener(this)
         initRecyclerView()
     }
 
@@ -62,7 +71,6 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Ba
             loading = false
             hasMoreReviews = result.has_more
             adapter.setAllToItems(result.results)
-            Log.e("goodday", result.toString())
         }
     }
 
@@ -86,6 +94,18 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Ba
 
     override fun hasLoadedAllItems(): Boolean {
         return !hasMoreReviews
+    }
+
+    override fun onClick(view: View?) {
+        val date = tvDate.text.split(" / ")
+
+        val datePicker = context?.let { DatePickerDialog(it, callback, date[0].toInt(), date[1].toInt() - 1, date[2].toInt()) }
+        datePicker?.show()
+    }
+
+    private val callback = DatePickerDialog.OnDateSetListener {
+            view, year, month, day ->
+                tvDate.text = getString(R.string.dateFormat, year, month + 1, day)
     }
 
 
