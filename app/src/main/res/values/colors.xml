@@ -8,4 +8,6 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorGrayTest">#6621425d</color>
     <color name="colorGray">#b2b2b3</color>
+    <color name="transparent">#00000000</color>
+    <color name="light_grey_2">#F2F2F2</color>
 </resources>
