@@ -1,12 +1,8 @@
 package com.moviereviewskotlin.ui.main
 
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
-import android.view.WindowManager
 import android.widget.TextView
-import androidx.annotation.RequiresApi
-
 import androidx.appcompat.app.ActionBar
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
@@ -36,10 +32,12 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener {
         }
     }
 
-    private fun initActionBar(){
+    private fun initActionBar() {
         supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
         supportActionBar?.setCustomView(R.layout.actionbar_title)
-        supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.colorReviews)))
+        supportActionBar?.setBackgroundDrawable(
+            ColorDrawable(ContextCompat.getColor(this, R.color.colorReviews))
+        )
         supportActionBar?.elevation = 0F
         setStatusBarColor(R.color.colorReviews)
     }
@@ -60,18 +58,20 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener {
 
     override fun onPageSelected(position: Int) {
 
-        fun setActionBarView(titleResId: Int, colorResId: Int){
+        fun setActionBarView(titleResId: Int, colorResId: Int) {
             tvTitle.setText(titleResId)
             appBar.setBackgroundResource(colorResId)
-            supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, colorResId)))
+            supportActionBar?.setBackgroundDrawable(
+                ColorDrawable(ContextCompat.getColor(this, colorResId))
+            )
         }
 
-        fun setTextView(tv: TextView, colorResId: Int, drawableResId: Int){
+        fun setTextView(tv: TextView, colorResId: Int, drawableResId: Int) {
             tv.setTextColor(ContextCompat.getColor(this, colorResId))
             tv.setBackgroundResource(drawableResId)
         }
 
-        when(position) {
+        when (position) {
             0 -> {
                 setActionBarView(R.string.reviews, R.color.colorReviews)
                 setStatusBarColor(R.color.colorReviews)
@@ -87,7 +87,6 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener {
                 setTextView(tvCritics, R.color.colorCritics, R.drawable.tab_background_critics_selected)
             }
         }
+        hideSoftKeyboard(viewPager)
     }
-
-
 }

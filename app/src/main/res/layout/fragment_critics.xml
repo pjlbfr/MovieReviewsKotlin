@@ -9,12 +9,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#6621425d">
-
-        <!--<ImageView-->
-                <!--android:id="@+id/image"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"/>-->
+            android:background="@color/colorGray">
 
         <EditText
                 android:id="@+id/etSearchCritic"
