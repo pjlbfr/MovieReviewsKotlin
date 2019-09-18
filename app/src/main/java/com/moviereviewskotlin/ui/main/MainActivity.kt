@@ -20,7 +20,7 @@ class MainActivity : BaseActivity(), ViewPager.OnPageChangeListener {
 
         initActionBar()
 
-        viewPager.adapter = ViewPagerAdapter(supportFragmentManager)
+        viewPager.adapter = ViewPagerAdapter(supportFragmentManager, 0)
         viewPager.addOnPageChangeListener(this)
 
         tvReviews.setOnClickListener {
