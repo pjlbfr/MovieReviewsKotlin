@@ -21,10 +21,35 @@ android {
 
     flavorDimensions "main"
     productFlavors{
-        develop{
+        dev {
             buildConfigField "String", "BASE_URL", "\"https://api.nytimes.com/svc/movies/v2/\""
             buildConfigField "String", "API_KEY", "\"b4d57bcd057d49f1bb5419da52469f95\""
+
+            applicationVariants.all { variant ->
+                renameAPK(variant, "MovieReviews", versionName, versionCode)
+
+            }
         }
+
+        prod {
+            buildConfigField "String", "BASE_URL", "\"https://api.nytimes.com/svc/movies/v2/\""
+            buildConfigField "String", "API_KEY", "\"b4d57bcd057d49f1bb5419da52469f95\""
+
+            applicationVariants.all { variant ->
+                renameAPK(variant, "MovieReviews", versionName, versionCode)
+
+            }
+        }
+    }
+}
+
+def renameAPK (variant, name, versionName, number) {
+    variant.outputs.all {
+        def SEP = "_"
+        def buildType = variant.variantData.variantConfiguration.buildType.name
+        def formattedDate = new Date().format('dd.MM.yy_HH.mm')
+
+        outputFileName = name + SEP + versionName + SEP + buildType + SEP + number + SEP + formattedDate + ".apk"
     }
 }
 
