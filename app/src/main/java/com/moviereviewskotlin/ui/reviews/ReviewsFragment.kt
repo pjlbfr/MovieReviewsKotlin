@@ -67,13 +67,7 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener,
     }
 
     override fun onRefresh() {
-        viewModel.reviewsRequest(
-            ReviewsParams(
-                adapter.itemCount,
-                etSearchReview.text.toString(),
-                ""
-            )
-        )
+        reviewRequest(0, etSearchReview.text.toString(), getPublicationDate())
     }
 
     override fun onItemClick(position: Int) {
@@ -106,13 +100,7 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener,
 
     override fun onLoadMore() {
         loading = true
-        viewModel.reviewsRequest(
-            ReviewsParams(
-                adapter.itemCount,
-                etSearchReview.text.toString(),
-                ""
-            )
-        )
+        reviewRequest(adapter.itemCount, etSearchReview.text.toString(), getPublicationDate())
     }
 
     override fun isLoading(): Boolean {
@@ -142,19 +130,24 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener,
         tvDate.text = getString(R.string.dateFormat, year, month + 1, day)
     }
 
+    private fun getPublicationDate() = tvDate.text.toString().replace(" / ", "-")
+
+    private fun reviewRequest(itemCount: Int, title: String, publicationDate: String) {
+        viewModel.reviewsRequest(
+            ReviewsParams(
+                itemCount,
+                title,
+                publicationDate
+            )
+        )
+    }
 
     private fun initSearch() {
         RxTextView.textChanges(etSearchReview)
             .skipInitialValue()
             .debounce(300, TimeUnit.MILLISECONDS)
             .map { charSequence ->
-                viewModel.reviewsRequest(
-                    ReviewsParams(
-                        adapter.itemCount,
-                        charSequence.toString(),
-                        ""
-                    )
-                )
+                reviewRequest(0, charSequence.toString(), getPublicationDate())
                 isSearch = true
                 Any()
             }
@@ -162,6 +155,4 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener,
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe()
     }
-
-
 }
