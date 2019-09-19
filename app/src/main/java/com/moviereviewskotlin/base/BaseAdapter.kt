@@ -49,4 +49,14 @@ abstract class BaseAdapter<T, VH : RecyclerView.ViewHolder>(items: MutableList<T
         this.items.clear()
         notifyDataSetChanged()
     }
+
+    fun updateItems(items: MutableList<T>) {
+        if (this.items != null) {
+            this.items.clear()
+            this.items.addAll(items)
+            notifyDataSetChanged()
+        } else {
+            setAllItems(items)
+        }
+    }
 }

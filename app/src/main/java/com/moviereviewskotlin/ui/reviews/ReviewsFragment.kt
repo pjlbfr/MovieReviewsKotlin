@@ -2,9 +2,7 @@ package com.moviereviewskotlin.ui.reviews
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.DatePicker
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -18,12 +16,11 @@ import com.moviereviewskotlin.data.reviews.response.Reviews
 import com.moviereviewskotlin.ui.critic.LoadingItemCreator
 import com.paginate.Paginate
 import kotlinx.android.synthetic.main.fragment_reviews.*
-import java.time.Month
-import java.time.Year
 import java.util.*
 import javax.inject.Inject
 
-class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, BaseAdapter.OnItemClickListener, Paginate.Callbacks, View.OnClickListener {
+class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener,
+    BaseAdapter.OnItemClickListener, Paginate.Callbacks, View.OnClickListener {
 
     @Inject
     lateinit var viewmodelFactory: ViewModelProvider.Factory
@@ -47,19 +44,30 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Ba
         viewModel = ViewModelProviders.of(this, viewmodelFactory).get(ReviewsViewModel::class.java)
         viewModel.getReviews().observe(this, reviewsObserver())
 
-        tvDate.text = getString(R.string.dateFormat, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH))
+        tvDate.text = getString(
+            R.string.dateFormat,
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH) + 1,
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
         tvDate.setOnClickListener(this)
         initRecyclerView()
     }
 
-    private fun initRecyclerView(){
+    private fun initRecyclerView() {
         rvReviews.layoutManager = LinearLayoutManager(context)
         rvReviews.adapter = adapter
         initPaginate()
     }
 
     override fun onRefresh() {
-
+        viewModel.reviewsRequest(
+            ReviewsParams(
+                adapter.itemCount,
+                etSearchReview.text.toString(),
+                ""
+            )
+        )
     }
 
     override fun onItemClick(position: Int) {
@@ -68,6 +76,7 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Ba
 
     private fun reviewsObserver(): Observer<Reviews> {
         return Observer { result ->
+            swipeRefreshReviews.isRefreshing = false
             loading = false
             hasMoreReviews = result.has_more
             adapter.setAllToItems(result.results)
@@ -85,7 +94,13 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Ba
 
     override fun onLoadMore() {
         loading = true
-        viewModel.reviewsRequest(ReviewsParams(adapter.itemCount, etSearchReview.text.toString(), ""))
+        viewModel.reviewsRequest(
+            ReviewsParams(
+                adapter.itemCount,
+                etSearchReview.text.toString(),
+                ""
+            )
+        )
     }
 
     override fun isLoading(): Boolean {
@@ -99,14 +114,19 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Ba
     override fun onClick(view: View?) {
         val date = tvDate.text.split(" / ")
 
-        val datePicker = context?.let { DatePickerDialog(it, callback, date[0].toInt(), date[1].toInt() - 1, date[2].toInt()) }
+        val datePicker = context?.let {
+            DatePickerDialog(
+                it,
+                callback,
+                date[0].toInt(),
+                date[1].toInt() - 1,
+                date[2].toInt()
+            )
+        }
         datePicker?.show()
     }
 
-    private val callback = DatePickerDialog.OnDateSetListener {
-            view, year, month, day ->
-                tvDate.text = getString(R.string.dateFormat, year, month + 1, day)
+    private val callback = DatePickerDialog.OnDateSetListener { _, year, month, day ->
+        tvDate.text = getString(R.string.dateFormat, year, month + 1, day)
     }
-
-
 }
