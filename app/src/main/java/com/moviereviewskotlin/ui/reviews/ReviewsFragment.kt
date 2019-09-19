@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.jakewharton.rxbinding2.widget.RxTextView
 import com.moviereviewskotlin.R
 import com.moviereviewskotlin.base.BaseAdapter
 import com.moviereviewskotlin.base.BaseFragment
@@ -15,8 +16,11 @@ import com.moviereviewskotlin.data.reviews.parameter.ReviewsParams
 import com.moviereviewskotlin.data.reviews.response.Reviews
 import com.moviereviewskotlin.ui.critic.LoadingItemCreator
 import com.paginate.Paginate
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_reviews.*
 import java.util.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener,
@@ -31,8 +35,9 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener,
 
     private var hasMoreReviews = true
     private var loading = false
+    private var isSearch = false
 
-    val calendar = Calendar.getInstance()
+    private val calendar: Calendar = Calendar.getInstance()
 
     override fun getFragmentLayout(): Int = R.layout.fragment_reviews
 
@@ -52,6 +57,7 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener,
         )
         tvDate.setOnClickListener(this)
         initRecyclerView()
+        initSearch()
     }
 
     private fun initRecyclerView() {
@@ -79,7 +85,13 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener,
             swipeRefreshReviews.isRefreshing = false
             loading = false
             hasMoreReviews = result.has_more
-            adapter.setAllToItems(result.results)
+
+            if (isSearch) {
+                isSearch = false
+                adapter.setAllItems(result.results)
+            } else {
+                adapter.setAllToItems(result.results)
+            }
         }
     }
 
@@ -129,4 +141,27 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener,
     private val callback = DatePickerDialog.OnDateSetListener { _, year, month, day ->
         tvDate.text = getString(R.string.dateFormat, year, month + 1, day)
     }
+
+
+    private fun initSearch() {
+        RxTextView.textChanges(etSearchReview)
+            .skipInitialValue()
+            .debounce(300, TimeUnit.MILLISECONDS)
+            .map { charSequence ->
+                viewModel.reviewsRequest(
+                    ReviewsParams(
+                        adapter.itemCount,
+                        charSequence.toString(),
+                        ""
+                    )
+                )
+                isSearch = true
+                Any()
+            }
+            .subscribeOn(Schedulers.newThread())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
+    }
+
+
 }
