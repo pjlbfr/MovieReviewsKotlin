@@ -15,7 +15,7 @@ class NetworkUtil(private val context: Context) {
             networkInfo != null
         } else {
             val capabilities = cm.getNetworkCapabilities(cm.activeNetwork)
-            capabilities!!.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+            capabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) != null
         }
     }
 
