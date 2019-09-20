@@ -11,6 +11,7 @@
     <me.zhanghai.android.materialprogressbar.MaterialProgressBar
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:indeterminateTint="@color/colorReviews"
             android:indeterminate="true"
             android:layout_gravity="center"
             app:mpb_progressStyle="circular"
