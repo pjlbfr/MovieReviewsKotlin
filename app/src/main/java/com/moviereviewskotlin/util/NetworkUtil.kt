@@ -11,8 +11,7 @@ class NetworkUtil(private val context: Context) {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 
         return if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-            val networkInfo = cm.activeNetworkInfo
-            networkInfo != null
+            cm.activeNetworkInfo != null
         } else {
             val capabilities = cm.getNetworkCapabilities(cm.activeNetwork)
             capabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) != null
