@@ -1,7 +1,12 @@
 package com.moviereviewskotlin.data.reviews.response
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class Review(
-    val id: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int,
     val link: Link,
     val byline: String,
     val headline: String,

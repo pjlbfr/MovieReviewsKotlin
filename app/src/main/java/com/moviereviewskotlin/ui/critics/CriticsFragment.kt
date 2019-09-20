@@ -43,7 +43,6 @@ class CriticsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Ba
         swipeRefreshCritics.setOnRefreshListener(this)
 
         initRecyclerView()
-        etSearchCritic.queryHint = getString(R.string.hint_enter_critic_name)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(CriticsViewModel::class.java)
         viewModel.getCritics().observe(this, criticsObserver())
