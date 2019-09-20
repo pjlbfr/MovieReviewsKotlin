@@ -45,6 +45,7 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener,
         super.onViewCreated(view, savedInstanceState)
 
         swipeRefreshReviews.setOnRefreshListener(this)
+        swipeRefreshReviews.setColorSchemeResources(R.color.colorReviews)
 
         viewModel = ViewModelProviders.of(this, viewmodelFactory).get(ReviewsViewModel::class.java)
         viewModel.getReviews().observe(this, reviewsObserver())

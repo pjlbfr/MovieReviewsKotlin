@@ -19,6 +19,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_critics.*
+import kotlinx.android.synthetic.main.fragment_reviews.*
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -42,6 +43,7 @@ class CriticsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Ba
         super.onViewCreated(view, savedInstanceState)
 
         swipeRefreshCritics.setOnRefreshListener(this)
+        swipeRefreshCritics.setColorSchemeResources(R.color.colorCritics)
 
         initRecyclerView()
 
