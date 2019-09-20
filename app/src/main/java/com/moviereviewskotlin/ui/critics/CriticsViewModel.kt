@@ -2,6 +2,7 @@ package com.moviereviewskotlin.ui.critics
 
 import androidx.lifecycle.MutableLiveData
 import com.moviereviewskotlin.base.BaseViewModel
+import com.moviereviewskotlin.data.critics.response.Critic
 import com.moviereviewskotlin.data.critics.response.Critics
 import com.moviereviewskotlin.domain.CriticsUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,7 +11,7 @@ import javax.inject.Inject
 
 class CriticsViewModel @Inject constructor(private val criticsUseCase: CriticsUseCase) : BaseViewModel() {
 
-    private val critics = MutableLiveData<Critics>()
+    private val critics = MutableLiveData<MutableList<Critic>>()
 
     fun getCritics() = critics
 
@@ -26,7 +27,7 @@ class CriticsViewModel @Inject constructor(private val criticsUseCase: CriticsUs
         )
     }
 
-    private fun handleCritics(result: Critics?) {
+    private fun handleCritics(result: MutableList<Critic>?) {
         critics.value = result
     }
 }

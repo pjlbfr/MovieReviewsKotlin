@@ -14,6 +14,7 @@ import com.moviereviewskotlin.room.dao.ReviewDao
 @Database(entities = [Critic::class, Review::class], version = 1, exportSchema = false)
 @TypeConverters(MultimediaCriticConverter::class, LinkConverter::class, MultimediaReviewConverter::class)
 abstract class MRDatabase: RoomDatabase() {
+
         abstract fun criticDao(): CriticDao
         abstract fun reviewDao(): ReviewDao
 }

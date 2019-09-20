@@ -1,8 +1,10 @@
 package com.moviereviewskotlin.di.modules
 
+import android.content.Context
 import com.google.gson.Gson
 import com.moviereviewskotlin.BuildConfig
 import com.moviereviewskotlin.retrofit.Api
+import com.moviereviewskotlin.util.NetworkUtil
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -43,4 +45,8 @@ class NetworkModule {
     @Singleton
     @Provides
     fun provideApi(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
+
+    @Singleton
+    @Provides
+    fun provideNetworkUtil(context: Context): NetworkUtil = NetworkUtil(context)
 }

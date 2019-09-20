@@ -12,6 +12,7 @@ import com.moviereviewskotlin.R
 import com.moviereviewskotlin.base.BaseAdapter
 import com.moviereviewskotlin.base.BaseFragment
 import com.moviereviewskotlin.base.RxSerachObservable
+import com.moviereviewskotlin.data.critics.response.Critic
 import com.moviereviewskotlin.data.critics.response.Critics
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -78,9 +79,9 @@ class CriticsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener, Ba
         rvCritics.adapter = adapter
     }
 
-    private fun criticsObserver(): Observer<Critics> {
+    private fun criticsObserver(): Observer<MutableList<Critic>> {
         return Observer { result ->
-            adapter.setItems(result.results)
+            adapter.setItems(result)
             if (swipeRefreshCritics.isRefreshing)
                 swipeRefreshCritics.isRefreshing = false
         }
