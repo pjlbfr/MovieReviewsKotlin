@@ -16,7 +16,7 @@ class MultimediaCriticConverter {
 
         return gson.fromJson(data, listType)
     }
-//
+
     @TypeConverter
     fun someObjectToString(someObjects: MultimediaCritic): String {
         return gson.toJson(someObjects)
