@@ -14,9 +14,8 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
-object NetworkModule {
+class NetworkModule {
 
-    @JvmStatic
     @Singleton
     @Provides
     fun provideRetrofit(): Retrofit {
@@ -41,7 +40,7 @@ object NetworkModule {
             .build()
     }
 
-    @JvmStatic
+    @Singleton
     @Provides
     fun provideApi(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
 }
