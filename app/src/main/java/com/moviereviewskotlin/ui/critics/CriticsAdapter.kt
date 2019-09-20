@@ -70,5 +70,4 @@ class CriticsAdapter(items: MutableList<Critic>, listener: OnItemClickListener) 
             }
         }
     }
-
 }

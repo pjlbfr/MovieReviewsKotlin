@@ -7,9 +7,7 @@ import com.moviereviewskotlin.retrofit.Api
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class CriticsRemoteStore @Inject constructor(api: Api) {
-
-    private val api = api
+class CriticsRemoteStore @Inject constructor(private val api: Api) {
 
     fun getCritics(type: String): Observable<Critics> = api.getCritics(type)
 

@@ -7,9 +7,7 @@ import com.moviereviewskotlin.data.reviews.response.Reviews
 import io.reactivex.Observable
 import javax.inject.Inject
 
-class CriticsRepository @Inject constructor(remoteStore: CriticsRemoteStore) : CriticsDataSource {
-
-    private val remoteStore = remoteStore
+class CriticsRepository @Inject constructor(private val remoteStore: CriticsRemoteStore) : CriticsDataSource {
 
     override fun getCritics(type: String): Observable<Critics> = remoteStore.getCritics(type)
 

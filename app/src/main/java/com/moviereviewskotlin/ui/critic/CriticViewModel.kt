@@ -9,9 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class CriticViewModel @Inject constructor(criticReviewsUseCase: CriticReviewsUseCase) : BaseViewModel() {
-
-    private val criticReviewsUseCase = criticReviewsUseCase
+class CriticViewModel @Inject constructor(private val criticReviewsUseCase: CriticReviewsUseCase) : BaseViewModel() {
 
     private val reviews = MutableLiveData<Reviews>()
 

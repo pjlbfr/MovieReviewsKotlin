@@ -6,7 +6,8 @@ import androidx.fragment.app.FragmentPagerAdapter
 import com.moviereviewskotlin.ui.critics.CriticsFragment
 import com.moviereviewskotlin.ui.reviews.ReviewsFragment
 
-class ViewPagerAdapter(fm: FragmentManager,behavior: Int) : FragmentPagerAdapter(fm, behavior) {
+class ViewPagerAdapter(fm: FragmentManager, behavior: Int) : FragmentPagerAdapter(fm, behavior) {
+
     override fun getItem(position: Int): Fragment =
         when(position){
             0 -> ReviewsFragment()
