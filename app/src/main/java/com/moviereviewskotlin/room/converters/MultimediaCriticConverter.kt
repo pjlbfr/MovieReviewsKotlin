@@ -1,24 +1,19 @@
 package com.moviereviewskotlin.room.converters
 
 import androidx.room.TypeConverter
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.google.gson.GsonBuilder
 import com.moviereviewskotlin.data.critics.response.MultimediaCritic
 
 class MultimediaCriticConverter {
 
-    private val gson = Gson()
+    private val gson = GsonBuilder().setPrettyPrinting().create()
 
     @TypeConverter
-    fun stringToSomeObject(data: String?): MultimediaCritic {
+    fun stringToSomeObject(data: String?): MultimediaCritic? =
+        gson.fromJson(data, MultimediaCritic::class.java)
 
-        val listType = object : TypeToken<MultimediaCritic>() {}.type
-
-        return gson.fromJson(data, listType)
-    }
 
     @TypeConverter
-    fun someObjectToString(someObjects: MultimediaCritic): String {
-        return gson.toJson(someObjects)
-    }
+    fun someObjectToString(someObjects: MultimediaCritic?): String? =
+        gson.toJson(someObjects)
 }

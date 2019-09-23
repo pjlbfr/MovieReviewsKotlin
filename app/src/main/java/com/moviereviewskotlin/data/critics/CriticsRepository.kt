@@ -16,9 +16,8 @@ class CriticsRepository @Inject constructor(private val remoteStore: CriticsRemo
 
     override fun getCritics(type: String): Observable<MutableList<Critic>> {
        return if (networkUtil.isOnline()) {
-        remoteStore.getCritics(type).map { t ->
+        remoteStore.getCritics(type).flatMap { t ->
                 localStore.updateCritics(t)
-                t.results
             }
         } else {
             localStore.getCritics()

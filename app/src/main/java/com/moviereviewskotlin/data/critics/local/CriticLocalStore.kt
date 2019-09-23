@@ -18,10 +18,8 @@ class CriticLocalStore @Inject constructor(private val criticDao: CriticDao) {
     fun updateCritics(critics: Critics): Observable<MutableList<Critic>> =
         Observable.create { e ->
             criticDao.deleteAll()
-            criticDao.insert(critics.results)
+            criticDao.insert(critics.results!!)
             e.onNext(critics.results)
             e.onComplete()
         }
-
-
 }

@@ -4,5 +4,5 @@ data class Critics(
     val status: String,
     val num_results: Int,
     val copyright: String,
-    val results: MutableList<Critic>
+    val results: MutableList<Critic>?
 )

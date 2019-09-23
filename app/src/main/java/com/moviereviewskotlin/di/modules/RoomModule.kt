@@ -1,6 +1,5 @@
 package com.moviereviewskotlin.di.modules
 
-import android.app.Application
 import androidx.room.Room
 import com.moviereviewskotlin.MovieApp
 import com.moviereviewskotlin.room.MRDatabase
@@ -14,7 +13,9 @@ class RoomModule {
     @Singleton
     @Provides
     fun providesRoom(app: MovieApp) =
-        Room.databaseBuilder(app.applicationContext, MRDatabase::class.java, "mr_db").build()
+        Room.databaseBuilder(app.applicationContext, MRDatabase::class.java, "mr_db")
+            .fallbackToDestructiveMigration()
+            .build()
 
     @Provides
     fun providesCriticDao(db: MRDatabase) = db.criticDao()

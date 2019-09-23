@@ -14,7 +14,7 @@ import com.moviereviewskotlin.data.critics.response.Critic
 import kotlinx.android.synthetic.main.item_critic.view.*
 
 class CriticsAdapter(items: MutableList<Critic>, listener: OnItemClickListener) :
-                            BaseAdapter<Critic, CriticsAdapter.CriticsViewHolder>(items, listener), Filterable {
+    BaseAdapter<Critic, CriticsAdapter.CriticsViewHolder>(items, listener), Filterable {
 
     private val critics = mutableListOf<Critic>()
 
@@ -37,11 +37,11 @@ class CriticsAdapter(items: MutableList<Critic>, listener: OnItemClickListener) 
         val item = getItem(position)
 
         view.tvCriticName.text = item.display_name
-        
+
         GlideApp.with(view.context)
-             .load(item.multimedia?.resource?.src)
-             .apply(RequestOptions().placeholder(R.drawable.critic_default).centerCrop())
-             .into(view.imageCritic)
+            .load(item.multimedia?.resource?.src)
+            .apply(RequestOptions().placeholder(R.drawable.critic_default).centerCrop())
+            .into(view.imageCritic)
     }
 
     class CriticsViewHolder(itemView: View) : BaseViewHolder(itemView)
@@ -53,7 +53,7 @@ class CriticsAdapter(items: MutableList<Critic>, listener: OnItemClickListener) 
                 val filterSeq = constraint.toString().toLowerCase()
                 if (filterSeq.isNotEmpty()) {
                     for (critic in critics) {
-                        if (critic.display_name.toLowerCase().contains(filterSeq))
+                        if (critic.display_name!!.toLowerCase().contains(filterSeq))
                             list.add(critic)
                     }
                 } else {

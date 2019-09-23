@@ -27,7 +27,7 @@ class CriticActivity : BaseActivity() {
 
         val critic = intent.getParcelableExtra(TAG) as Critic
 
-        initActionBar(critic.display_name)
+        initActionBar(critic.display_name!!)
 
         router.goToCriticFragment(supportFragmentManager, critic)
     }
