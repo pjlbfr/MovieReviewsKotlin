@@ -14,7 +14,7 @@ class RoomModule {
     @Provides
     fun providesRoom(app: MovieApp) =
         Room.databaseBuilder(app.applicationContext, MRDatabase::class.java, "mr_db")
-            .fallbackToDestructiveMigration()
+//            .fallbackToDestructiveMigration()
             .build()
 
     @Provides

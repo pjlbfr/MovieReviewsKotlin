@@ -28,7 +28,7 @@ class ReviewsAdapter(items: MutableList<Review>, listener: OnItemClickListener) 
         view.tvByline.text = item.byline
         view.tvDisplayTitle.text = item.display_title
         view.tvSummaryShort.text = item.summary_short
-        view.tvDateUpdated.text = item.date_updated.replace("-", "/")
+        view.tvDateUpdated.text = item.date_updated?.replace("-", "/")
 
         GlideApp.with(view.context)
             .load(item.multimedia?.src)

@@ -68,6 +68,7 @@ class ReviewsFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener,
     }
 
     override fun onRefresh() {
+        isSearch = true
         reviewRequest(0, etSearchReview.text.toString(), getPublicationDate())
     }
 

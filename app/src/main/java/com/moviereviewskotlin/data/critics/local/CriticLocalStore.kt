@@ -10,8 +10,7 @@ class CriticLocalStore @Inject constructor(private val criticDao: CriticDao) {
 
     fun getCritics(): Observable<MutableList<Critic>> =
         Observable.create { e ->
-            val result = criticDao.getAll()
-            e.onNext(result)
+            e.onNext(criticDao.getAll())
             e.onComplete()
         }
 

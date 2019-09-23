@@ -11,7 +11,7 @@ import com.moviereviewskotlin.room.converters.MultimediaReviewConverter
 import com.moviereviewskotlin.room.dao.CriticDao
 import com.moviereviewskotlin.room.dao.ReviewDao
 
-@Database(entities = [Critic::class, Review::class], version = 2, exportSchema = false)
+@Database(entities = [Critic::class, Review::class], version = 3, exportSchema = false)
 @TypeConverters(
     MultimediaCriticConverter::class,
     LinkConverter::class,

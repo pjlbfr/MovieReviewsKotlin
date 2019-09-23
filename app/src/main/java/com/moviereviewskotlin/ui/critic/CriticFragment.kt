@@ -75,7 +75,7 @@ class CriticFragment :
         if (!critic?.bio.equals("")) {
 
             tvBioCritic.visibility = View.VISIBLE
-            tvBioCritic.text = HtmlCompat.fromHtml(critic!!.bio!!, HtmlCompat.FROM_HTML_MODE_LEGACY)
+            tvBioCritic.text = HtmlCompat.fromHtml(critic?.bio!!, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
             cardCritic.setOnTouchListener(object : OnSwipeTouchListener(context) {
                 override fun onSwipeTop() {
